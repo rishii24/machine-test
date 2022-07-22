@@ -34,12 +34,11 @@ export const BasicTable = () => {
   }, [finalData]);
 
   const innerRef = ClickHook((e) => {
-    // setOpen(!open);
-    // setTimeout(() => {
-    //   setOpen(false);
-    // }, 3000);
     e.preventDefault();
-    setFinalData(userData);
+    console.log(e);
+    if (e.path?.length === 3) {
+      setFinalData(userData);
+    }
   });
 
   console.log(finalData);
@@ -47,7 +46,7 @@ export const BasicTable = () => {
   return (
     <div>
       <TableContainer>
-        <Table sx={{ minWidth: 950 }} ref={innerRef}>
+        <Table sx={{ minWidth: 950 }}>
           <TableHead>
             <TableRow>
               <TableCell>Parents & Siblings</TableCell>
@@ -60,7 +59,7 @@ export const BasicTable = () => {
               <TableCell>Spouse</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody ref={innerRef}>
             {userData.map((data, idx) => {
               return (
                 <TableRow key={idx}>
@@ -81,16 +80,18 @@ export const BasicTable = () => {
                     />
                   </TableCell>
                   <TableCell>
-                    <BasicSelect
-                      index={idx}
-                      personValue={data.gender}
-                      handleSubmit={handleSubmit}
-                      userdata={userData}
-                      setUserData={setUserData}
-                      name={"name"}
-                      setOpen={setOpen}
-                      open={open}
-                    />
+                    <div>
+                      <BasicSelect
+                        index={idx}
+                        personValue={data.gender}
+                        handleSubmit={handleSubmit}
+                        userdata={userData}
+                        setUserData={setUserData}
+                        name={"gender"}
+                        setOpen={setOpen}
+                        open={open}
+                      />
+                    </div>
                   </TableCell>
                   <TableCell>
                     <Typography
@@ -162,7 +163,7 @@ export const BasicTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <CustomSnackbar open={open} setOpen={setOpen} message="Changes Saved" />
+      <CustomSnackbar open={open} setopen={setOpen} message="Changes Saved" />
       <div style={{ fontSize: "1.5rem", marginTop: "2rem" }}>
         On pressing enter or clicking outside table you'd see the final output
         of changes you've made
