@@ -14,10 +14,6 @@ export const BasicSelect = ({
   const handleChange = (e) => {
     let newArray = [...userdata];
     newArray[index] = { ...newArray[index], gender: e.target.value };
-    setOpen(!open);
-    setTimeout(() => {
-      setOpen(false);
-    }, 3000);
     return setUserData(newArray);
   };
 
