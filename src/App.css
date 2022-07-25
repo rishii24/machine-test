@@ -37,8 +37,19 @@
   }
 }
 
-
 .overflow-test {
   overflow-x: hidden !important;
   text-overflow: ellipsis !important;
+  /* border: 1px solid green; */
+}
+
+.MuiTableCell-root {
+  border: 1px solid rgb(179, 179, 179) !important;
+  padding: 10px !important;
+  font-size: 1rem !important;
+}
+
+.MuiSelect-select {
+  outline: none !important;
+  border: none !important;
 }
