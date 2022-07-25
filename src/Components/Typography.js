@@ -67,8 +67,8 @@ export const Typography = ({
         textOverflow: "ellipsis",
         margin: 0,
         height: "20px",
-        width: "140px",
-        padding: "15px",
+        width: "125px",
+        padding: "10px",
         display: "flex",
         justifyContent: "center",
         overflow: "hidden",
@@ -87,7 +87,7 @@ export const Typography = ({
           justifyContent: "center",
           border: refFocus ? "3px solid #87CEEB" : "",
           borderRadius: "5px",
-          padding: "5px",
+          padding: "0px",
         }}
       >
         {name === "name" && (
