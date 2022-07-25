@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef } from "react";
 import { Input } from "@mui/material";
-import { ClickHook } from "./custom/ClickHook";
 
 export const Typography = ({
   personValue,
@@ -9,7 +8,20 @@ export const Typography = ({
   userdata,
   setUserData,
   name,
+  imgsrc,
 }) => {
+  const focusRef = useRef({});
+
+  const [refFocus, setRefFocus] = useState(false);
+
+  const handleRefClick = () => {
+    console.log(focusRef, "ref");
+    if (focusRef.current) {
+      setRefFocus(!refFocus);
+    }
+  };
+
+  console.log(refFocus);
   const handleChange = (e) => {
     if (e.target.name === "name") {
       let newArray = [...userdata];
@@ -53,23 +65,49 @@ export const Typography = ({
       style={{
         whiteSpace: "nowrap",
         textOverflow: "ellipsis",
-        width: "150px",
-        height: "40px",
-        display: "block",
+        margin: 0,
+        height: "20px",
+        width: "140px",
+        padding: "15px",
+        display: "flex",
+        justifyContent: "center",
         overflow: "hidden",
+        alignItems: "center",
+        borderLeft: personValue === "Elon Musk" ? "4px solid #00008B" : 0,
+        paddingLeft: personValue === "Elon Musk" ? "1rem" : 0,
+        // border: refFocus ? "2px solid #87CEEB": ""
       }}
       className="overflow-test"
+      ref={focusRef}
+      onClick={handleRefClick}
     >
-      <form onSubmit={handleSubmit}>
-        <Input
-          disableUnderline={true}
-          variant="standard"
-          onChange={handleChange}
-          value={personValue}
-          type="text"
-          name={name}
-        />
-      </form>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          border: refFocus ? "3px solid #87CEEB" : "",
+          borderRadius: "5px",
+          padding: "5px",
+        }}
+      >
+        {name === "name" && (
+          <img
+            style={{ height: "25px", marginRight: "6px" }}
+            src={imgsrc}
+            alt="img"
+          />
+        )}
+        <form onSubmit={handleSubmit}>
+          <Input
+            disableUnderline={true}
+            variant="standard"
+            onChange={handleChange}
+            value={personValue}
+            type="text"
+            name={name}
+          />
+        </form>
+      </div>
     </div>
   );
 };

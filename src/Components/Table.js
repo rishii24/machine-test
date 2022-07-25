@@ -13,6 +13,10 @@ import { BasicSelect } from "./Select";
 
 import { ClickHook } from "./custom/ClickHook";
 
+import Elon from "../Assets/elon.png";
+import Kyle from "../Assets/lady.png";
+import Robert from "../Assets/man.png";
+
 export const BasicTable = () => {
   const [userData, setUserData] = useState(mockData);
   const [open, setOpen] = useState(false);
@@ -35,7 +39,6 @@ export const BasicTable = () => {
 
   const innerRef = ClickHook((e) => {
     e.preventDefault();
-    console.log(e);
     if (e.path?.length === 3) {
       setFinalData(userData);
     }
@@ -44,8 +47,9 @@ export const BasicTable = () => {
   console.log(finalData);
 
   return (
-    <div>
-      <TableContainer>
+    <div style={{ padding: "5rem 3rem" }}>
+      <div style={{ fontSize: "2rem" }}>Family Members</div>
+      <TableContainer style={{ marginTop: "1.5rem" }}>
         <Table sx={{ minWidth: 950 }}>
           <TableHead>
             <TableRow>
@@ -63,13 +67,7 @@ export const BasicTable = () => {
             {userData.map((data, idx) => {
               return (
                 <TableRow key={idx}>
-                  <TableCell
-                    scope="row"
-                    sx={{
-                      borderLeft: idx === 2 ? 4 : 0,
-                      borderColor: idx === 2 ? "#87CEEB" : "",
-                    }}
-                  >
+                  <TableCell>
                     <Typography
                       index={idx}
                       personValue={data.name}
@@ -77,6 +75,7 @@ export const BasicTable = () => {
                       userdata={userData}
                       setUserData={setUserData}
                       name={"name"}
+                      imgsrc={data.img}
                     />
                   </TableCell>
                   <TableCell>
@@ -184,6 +183,7 @@ const mockData = [
     deathloc: "1527 Pond Reef Rd, Ketchikan, Alaska 99901, USA",
     marriage: "2021",
     spouse: "Robert Musk",
+    img: Kyle,
   },
   {
     id: 2,
@@ -195,6 +195,7 @@ const mockData = [
     deathloc: "Munic, Germany",
     marriage: "2021",
     spouse: "Kyle Musk",
+    img: Robert,
   },
   {
     id: 3,
@@ -206,5 +207,6 @@ const mockData = [
     deathloc: "Mars",
     marriage: "",
     spouse: "",
+    img: Elon,
   },
 ];

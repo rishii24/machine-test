@@ -18,15 +18,20 @@ export const BasicSelect = ({
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        <InputLabel id="gender">Gender</InputLabel>
+    <Box>
+      <FormControl
+        fullWidth
+        sx={{ minWidth: 120 }}
+        size="small"
+        variant="standard"
+      >
         <Select
           labelId="gender"
           value={personValue}
           defaultValue={personValue}
           label="Gender"
           onChange={handleChange}
+          disableUnderline
         >
           <MenuItem value={"M"}>{personValue === "M" ? "M" : "Male"}</MenuItem>
           <MenuItem value={"F"}>
